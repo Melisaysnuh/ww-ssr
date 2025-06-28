@@ -11,5 +11,8 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  runtimeConfig: {
+    hubspotKey: process.env.KEY,
+  },
 
 })

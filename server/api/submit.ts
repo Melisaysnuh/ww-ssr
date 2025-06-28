@@ -1,13 +1,16 @@
 
 
+import dotenv from 'dotenv';
+dotenv.config()
 
+const HUBSPOT_API_KEY = process.env.KEY
+console.log(HUBSPOT_API_KEY)
 
 export default defineEventHandler(async (event) => {
     const customer = await readBody(event);
     console.log('API received:', customer);
 
     try {
-        const HUBSPOT_API_KEY = 'pat-eu1-b37e30c7-a4a8-48f4-9b63-54162e35dc4d'; // todo move
 
         const response = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
             method: 'POST',
