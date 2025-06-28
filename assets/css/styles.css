@@ -1,0 +1,261 @@
+@import "tailwindcss";
+
+/* npx @tailwindcss/cli -i ./styles.css -o ./output.css --watch */
+
+@theme {
+  /* Colors */
+  --color-purple-widow: oklch(47.306% 0.17766 280.237);
+  --color-pumpkin-orange: oklch(79.268% 0.17097 70.665);
+  --color-darkest-night: oklch(19.915% 0.08215 291.378);
+  --color-light-purple: oklch(77.775% 0.12011 288.118);
+  --color-white-widow: oklch(97.072% 0.00276 285.755);
+
+  /* Fonts */
+  --font-primary: 'Nunito';
+  --font-secondary: 'Averia Libre';
+
+  /* Border Radius */
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  /* Shadows */
+  --shadow-2xs: 0 1px rgb(0 0 0 / 0.05);
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-theme: 1px 1px 1px 1px #381d75;
+
+  /* Dimensions */
+  --width-hex: 12.5vh;
+  --width-hex-sm: 75px;
+  --height-hex: 12.5vh;
+  --height-hex-sm: 75px;
+
+  /* Font sizes */
+  --font-size-input-lg: 3.2rem;
+  --font-size-input-sm: 2rem;
+  --font-size-button: 1rem;
+  --font-size-message: 0.8rem;
+  --font-size-status: 1.1rem;
+
+  /* Spacing */
+  --spacing-nav: 30px;
+  --spacing-modal: 20px;
+
+  /* Max widths */
+  --max-w-modal: 600px;
+  --max-w-mobile-block: 90vw;
+  --max-w-desktop-block: 45vw;
+
+  /* Opacity */
+  --opacity-faint: 0.3;
+
+  /* Grid */
+  --grid-cols-hex: repeat(18, 20px);
+  --grid-cols-hex-sm: repeat(18, 16px);
+  --grid-rows-hex: repeat(36, 10px);
+  --grid-rows-hex-sm: repeat(36, 8px);
+}
+
+/* Backgrounds */
+.bg-radial-theme {
+  background: radial-gradient(#381d75, #180a37);
+}
+
+/* Buttons */
+.other-button {
+  border-radius: 12px;
+  width: 120px;
+  border: none;
+  font-family: var(--font-primary);
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 8px;
+  margin: 8px;
+  background: var(--color-darkest-night);
+  color: var(--color-pumpkin-orange);
+  box-shadow: var(--shadow-theme);
+}
+
+
+
+/* Headings */
+h2, h3, modal-title {
+  font-family: var(--font-secondary);
+  color: orange;
+  text-align: center;
+  width: 100%;
+  padding: 2%;
+  font-weight: 500;
+  text-shadow: 20%; /* This value is unusual, consider revising */
+}
+h2 {
+  font-size: 1.6rem;
+}
+h3, modal-title {
+  font-size: 1.1rem;
+}
+
+/* Navigation */
+.navigation {
+  width: 100%;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Text Colors */
+.text-pumpkin {
+  color: var(--color-pumpkin-orange);
+}
+.text-light-purple {
+  color: var(--color-light-purple);
+}
+.text-white-widow {
+  color: var(--color-white-widow);
+}
+
+/* Background Colors */
+.bg-purple-widow {
+  background-color: var(--color-purple-widow);
+}
+.bg-darkest-night {
+  background-color: var(--color-darkest-night);
+}
+
+/* Shadows & Fonts */
+.shadow-theme {
+  box-shadow: var(--shadow-theme);
+}
+.font-primary {
+  font-family: var(--font-primary);
+}
+.font-secondary {
+  font-family: var(--font-secondary);
+}
+
+/* Radius */
+.radius-2xl {
+  border-radius: var(--radius-2xl);
+}
+
+/* Font sizes */
+.text-input-lg {
+  font-size: var(--font-size-input-lg);
+}
+.text-input-sm {
+  font-size: var(--font-size-input-sm);
+}
+
+/* Hover Effects */
+.btn:hover,
+.modal-close-btn:hover {
+  background-color: rgba(24, 10, 55, 0.85);
+}
+
+/* Component styles */
+@layer components {
+  .register {
+    @apply bg-darkest-night text-white-widow font-primary max-w-[540px] mx-auto p-8 rounded-[4rem] shadow-theme bg-gradient-to-br;
+  }
+
+  .register-icon {
+    @apply flex items-center justify-center w-[50px] h-[50px] p-4 mx-auto mb-5 bg-white-widow rounded-2xl;
+  }
+
+  .register-title {
+    @apply text-white-widow text-xl uppercase tracking-widest text-center mt-8 px-8 font-primary;
+  }
+
+  .register-stepper {
+    @apply flex justify-between w-full relative mb-6;
+  }
+  .register-stepper::before {
+    content: "";
+    @apply absolute top-1/2 left-[10px] right-[10px] h-[2px] bg-gray-300 -z-10;
+  }
+
+  .step {
+    @apply flex items-center justify-center text-gray-400 border-2 border-gray-400 rounded-full w-[25px] h-[25px] text-base font-bold;
+  }
+  .step-active {
+    @apply bg-light-purple text-darkest-night border-[--color-purple-widow];
+  }
+  .step-done {
+    @apply text-light-purple border-light-purple;
+  }
+
+  .form-group {
+    @apply flex flex-row items-baseline justify-start mb-4;
+  }
+  .form-group.cta-step {
+    @apply justify-between text-white-widow;
+  }
+  .form-group.new-password {
+    @apply mt-8;
+  }
+
+  .cta-color,
+  .cta-color input,
+  .cta-color .link_text {
+    @apply text-white-widow font-primary text-lg no-underline;
+  }
+  .cta-color .link_wrap {
+    @apply relative flex items-center justify-center w-full;
+  }
+
+  .checkbox-label {
+    @apply w-[90%] flex flex-row items-center gap-2 justify-baseline;
+  }
+
+  .arrow-prev,
+  .arrow-next {
+    @apply inline-block transition-transform duration-300 ease-in-out;
+  }
+  .link_wrap:hover .arrow-prev {
+    @apply -translate-x-1;
+  }
+  .link_wrap:hover .arrow-next {
+    @apply translate-x-1;
+  }
+
+  input[type="text"],
+  input[type="email"] {
+    @apply appearance-none border-0 rounded-md p-5 w-full mb-2 bg-white-widow text-darkest-night;
+  }
+
+  input[type="submit"] {
+    @apply cursor-pointer relative pr-9 bg-none w-fit text-white-widow text-lg font-bold bg-gradient-to-br shadow-theme rounded-2xl px-6 py-3;
+  }
+  input[type="submit"]::after {
+    content: "";
+    @apply absolute right-0 top-1/2 border border-[--color-purple-widow] rounded-full w-[25px] h-[25px] -mt-[14px] pointer-events-none transition-all duration-[330ms] ease-[cubic-bezier(0.12,0.75,0.4,1)];
+  }
+
+  .register-btn input {
+    @apply text-white-widow text-lg font-bold bg-gradient-to-br shadow-theme rounded-2xl px-6 py-3;
+  }
+
+  .congrats {
+    @apply bg-white-widow text-[--color-purple-widow] p-16 text-center;
+  }
+  .congrats-subtitle strong {
+    @apply text-2xl;
+  }
+
+  .slide-fade-enter-active {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  .slide-fade-leave-active {
+    @apply hidden transition-all duration-400 ease-[cubic-bezier(1.0,0.5,0.8,1.0)];
+  }
+  .slide-fade-enter,
+  .slide-fade-leave-to {
+    @apply translate-x-2 opacity-0;
+  }
+}
