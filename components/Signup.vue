@@ -1,3 +1,4 @@
+
 <template>
   <div id="signup">
     <section class="register" v-if="!hasSeenCongrats">
@@ -189,6 +190,7 @@
 </template>
 
 <script>
+import {submitAPI} from '../services/submitAPI.js';
 
 export default {
   name: 'Signup',
@@ -219,21 +221,28 @@ export default {
     };
   },
   methods: {
+    async customerRegister(customer) {
+      const resp = await submitAPI(customer);
+      console.log('resp is ', resp)
+      if (resp.status===201)
+      {this.hasSeenCongrats = true};
+    },
+
     prev() {
       this.step--;
     },
 
     next() {
       if (this.step === 2 && !this.customer.preferences.includes('languages')) {
-        customerRegister();
+        this.customerRegister(this.customer);
       }
-      this.step++;
+      else {
+        this.step++;
+      }
+
     },
 
-    customerRegister: function () {
 
-      this.hasSeenCongrats = true;
-    },
   },
 };
 </script>
