@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config()
 
 const HUBSPOT_API_KEY = process.env.KEY
-console.log(HUBSPOT_API_KEY)
+
 
 export default defineEventHandler(async (event) => {
     const customer = await readBody(event);
