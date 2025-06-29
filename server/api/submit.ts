@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config()
 
-
+//should be hidden!
 const HUBSPOT_API_KEY = process.env.KEY
 
 export default defineEventHandler(async (event) => {
