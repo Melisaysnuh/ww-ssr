@@ -4,7 +4,6 @@ dotenv.config()
 
 const HUBSPOT_API_KEY = process.env.KEY
 
-
 export default defineEventHandler(async (event) => {
     const customer = await readBody(event);
     const parsed = JSON.parse(customer)
@@ -13,6 +12,9 @@ export default defineEventHandler(async (event) => {
         properties: {
             email: parsed.email,
             firstname: parsed.firstname,
+            lastname: parsed.lastname,
+            preferences: parsed.preferences?.join(';'),
+            languages: parsed.languages?.join(';'),
         }
     }
 
