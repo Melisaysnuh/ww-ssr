@@ -1,4 +1,3 @@
-
 <template>
   <div id="signup">
     <section class="register" v-if="!hasSeenCongrats">
@@ -30,15 +29,15 @@
             <div class="form-group flex flex-col">
               <input
                 type="text"
-                v-model="customer.firstname"
-                autocomplete="customer.firstname"
+                v-model="customer.firstName"
+                autocomplete="customer.firstName"
                 placeholder="First name"
                 required
               />
               <input
                 type="text"
-                v-model="customer.lastname"
-                autocomplete="customer.lastname"
+                v-model="customer.lastName"
+                autocomplete="customer.lastName"
                 placeholder="Last name"
                 required
               />
@@ -190,7 +189,6 @@
 </template>
 
 <script>
-import {submitAPI} from '../services/submitAPI.js';
 
 export default {
   name: 'Signup',
@@ -200,16 +198,20 @@ export default {
       steps: {},
       step: 1,
       customer: {
-        firstname: '',
-        lastname: '',
+        firstName: '',
+        lastName: '',
+        termOfService: '',
+        password: '',
         email: '',
         preferences: [],
         languages: [],
       },
       hasSeenCongrats: false,
       tempCustomer: {
-        firstname: '',
-        lastname: '',
+        firstName: '',
+        lastName: '',
+        termOfService: '',
+        password: '',
         email: '',
         preferences: [],
         languages: [],
@@ -217,28 +219,21 @@ export default {
     };
   },
   methods: {
-    async customerRegister(customer) {
-      const resp = await submitAPI(customer);
-      console.log('resp is ', resp)
-      if (resp.status===201)
-      {this.hasSeenCongrats = true};
-    },
-
     prev() {
       this.step--;
     },
 
     next() {
       if (this.step === 2 && !this.customer.preferences.includes('languages')) {
-        this.customerRegister(this.customer);
+        customerRegister();
       }
-      else {
-        this.step++;
-      }
-
+      this.step++;
     },
 
+    customerRegister: function () {
 
+      this.hasSeenCongrats = true;
+    },
   },
 };
 </script>
