@@ -1,40 +1,46 @@
-
-
 import dotenv from 'dotenv';
 dotenv.config()
+
 
 const HUBSPOT_API_KEY = process.env.KEY
 
 
 export default defineEventHandler(async (event) => {
     const customer = await readBody(event);
-    console.log('API received:', customer);
+    const parsed = JSON.parse(customer)
 
+    const contactObj = {
+        properties: {
+            email: parsed.email,
+            firstname: parsed.firstname,
+        }
+    }
+
+    console.log('contactObj:', contactObj)
+
+    const stringified = JSON.stringify(contactObj)
+
+    console.log(stringified)
     try {
 
         const response = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
             method: 'POST',
+
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${HUBSPOT_API_KEY}`,
             },
-            body: JSON.stringify({
-                properties: {
-                    email: customer.email,
-                    firstname: customer.firstName,
-                    lastname: customer.lastName,
-                    languages: customer.languages,
-                    preferences: customer.preferences
-                },
-            }),
+            body: stringified,
         });
 
         const data = await response.json();
         console.log('HubSpot response:', data);
+        console.log('Response headers:', [...response.headers.entries()]);
+        console.log('Response status:', response.status);
 
         return {
             status: response.status,
-            message: 'Sent to HubSpot',
+            message: 'Received to HubSpot',
             hubspot: data,
         };
     } catch (error) {

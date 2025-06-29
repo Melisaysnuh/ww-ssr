@@ -11,6 +11,7 @@
     "start:server": "ts-node --loader ts-node/esm server/index.ts"
   },
   "dependencies": {
+    "@hubspot/api-client": "^13.0.0",
     "@tailwindcss/cli": "^4.1.11",
     "@tailwindcss/vite": "^4.1.11",
     "braze": "^1.5.2",

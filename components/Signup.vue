@@ -30,15 +30,15 @@
             <div class="form-group flex flex-col">
               <input
                 type="text"
-                v-model="customer.firstName"
-                autocomplete="customer.firstName"
+                v-model="customer.firstname"
+                autocomplete="customer.firstname"
                 placeholder="First name"
                 required
               />
               <input
                 type="text"
-                v-model="customer.lastName"
-                autocomplete="customer.lastName"
+                v-model="customer.lastname"
+                autocomplete="customer.lastname"
                 placeholder="Last name"
                 required
               />
@@ -200,20 +200,16 @@ export default {
       steps: {},
       step: 1,
       customer: {
-        firstName: '',
-        lastName: '',
-        termOfService: '',
-        password: '',
+        firstname: '',
+        lastname: '',
         email: '',
         preferences: [],
         languages: [],
       },
       hasSeenCongrats: false,
       tempCustomer: {
-        firstName: '',
-        lastName: '',
-        termOfService: '',
-        password: '',
+        firstname: '',
+        lastname: '',
         email: '',
         preferences: [],
         languages: [],
